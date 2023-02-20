@@ -2,6 +2,8 @@ package application;
 
 import java.util.Date;
 
+import model.dao.DaoFactory;
+import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
@@ -12,6 +14,10 @@ public class Probram {
 		Department obj = new Department(1, "Books");
 		
 		Seller seller = new Seller(21, "Bob", "bob@gmail.com", new Date(), 3000.00, obj);
+		
+		//Esse SellerDao abaixo faz com que eu não precise expor a implementação de criação do Seller. Não preciso colocar o new aqui pois já tem na DaoFactory
+		//É tbm uma forma de fazer a injeção de dependência sem explicitar a implementação
+		SellerDao sellerDao = DaoFactory.createSellerDao();
 		
 		System.out.println(seller);
 
